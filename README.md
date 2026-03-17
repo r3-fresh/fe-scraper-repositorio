@@ -19,7 +19,7 @@ Herramienta de línea de comandos que extrae automáticamente las estadísticas 
 Ejecuta los siguientes comandos en la terminal. En Ubuntu 24.x algunas librerías tienen el sufijo `t64`; acepta esas sugerencias si el sistema las propone automáticamente.
 
 ```bash
-sudo apt-get update
+sudo apt-get update && \
 sudo apt-get install -y \
   libx11-xcb1 \
   libxcomposite1 \
@@ -128,19 +128,6 @@ Puedes ajustar estas constantes al inicio de `scraper.js`:
 
 ---
 
-## 🛡️ Optimizaciones implementadas
-
-- **Bloqueo de recursos innecesarios** — imágenes, fuentes y estilos se abortan para acelerar la carga de cada página.
-- **User-Agent rotativo** — se selecciona aleatoriamente entre varios agentes reales de Chrome para reducir la detección.
-- **Viewport aleatorio** — resolución de pantalla variada por pestaña para mayor naturalidad.
-- **Limpieza de separadores de miles** — los valores `1.234` o `1,234` se normalizan a `1234` en el CSV.
-- **Escritura incremental del CSV** — los resultados se guardan por lotes, así no se pierde nada si el proceso se interrumpe.
-- **Pausa entre lotes** — reduce la presión sobre el servidor objetivo y el riesgo de bloqueo por parte de Anubis.
-- **Reporte final** — al terminar muestra un resumen de URLs exitosas y errores.
-- **Argumentos CLI** — los archivos de entrada y salida se pueden especificar directamente al invocar el script.
-
----
-
 ## ❗ Solución de problemas
 
 ### El navegador no abre / error de librerías
@@ -166,21 +153,3 @@ node scraper.js /ruta/completa/mis_urls.txt resultados.csv
 ```
 
 ---
-
-## 📦 `package.json` de referencia
-
-```json
-{
-  "name": "scraper-visitas",
-  "version": "1.0.0",
-  "description": "Extractor de visitas y descargas con Puppeteer",
-  "main": "scraper.js",
-  "scripts": {
-    "start": "node scraper.js"
-  },
-  "dependencies": {
-    "puppeteer-extra": "^3.3.6",
-    "puppeteer-extra-plugin-stealth": "^2.11.2"
-  }
-}
-```
