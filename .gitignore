@@ -12,7 +12,8 @@ lerna-debug.log*
 pnpm-debug.log*
 
 # Scraping docs
-enlaces.txt
+*.txt
+enlaces.*
 resultados.csv
 *.csv
 *.json
